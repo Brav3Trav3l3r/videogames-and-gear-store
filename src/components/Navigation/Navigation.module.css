@@ -1,0 +1,23 @@
+.nav {
+  padding: 0.5rem 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  color: rgb(7, 7, 7);
+}
+
+.interact {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+.heading {
+  font-weight: 800;
+  color: rgb(103, 121, 255);
+
+}
