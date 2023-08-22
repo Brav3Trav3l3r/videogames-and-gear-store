@@ -5,8 +5,10 @@
 }
 
 .cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .heading {
@@ -14,4 +16,24 @@
   font-size: 2.8rem;
   max-width: 8ch;
   line-height: 2.8rem;
+}
+
+@media (min-width: 640px){
+  
+
+  .cards{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px){
+  .cards{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px){
+  .cards{
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
