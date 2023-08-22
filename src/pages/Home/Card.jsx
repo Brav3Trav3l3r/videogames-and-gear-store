@@ -4,7 +4,7 @@ import styles from "./Card.module.css";
 export default function Card({ item }) {
   return (
     <div className={styles.card}>
-      <img src={item.poster} alt="" />
+      <img align='top' src={item.poster} alt="" />
       <div className={styles.info}>
         <h3 className={styles.title}>{item.title.toUpperCase()}</h3>
 
