@@ -20,7 +20,7 @@ export default function Gear() {
 
   return (
     <div className={styles.gear}>
-      <h1 className={styles.heading}>NEW RELEASES!</h1>
+      <h1 className={styles.heading}>NEW GEARS!</h1>
 
       <div className={styles.cards}>
         {gears.map((g) => (
