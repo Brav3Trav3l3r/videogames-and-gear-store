@@ -9,7 +9,6 @@ export default function Navigation({ user = true }) {
       <h1 className={styles.heading}>GAME CUBE</h1>
 
       <div className={styles.interact}>
-        <Icon icon="lucide:search" />
         {user ? <Cart /> : <button>Login</button>}
       </div>
     </nav>

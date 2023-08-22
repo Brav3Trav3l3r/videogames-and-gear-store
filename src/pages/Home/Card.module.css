@@ -34,8 +34,8 @@
   font-size: 1.25rem;
   font-weight: 800;
   padding: 0 0.75rem 0.75rem 0.75rem;
-  border-left: 4px solid rgb(255, 57, 90);
-  border-bottom: 4px solid rgb(255, 57, 90);
+  border-left: 4px solid var(--secondary-color);
+  border-bottom: 4px solid var(--secondary-color);
 }
 
 .button {
@@ -49,7 +49,7 @@
 }
 
 .button:hover {
-  color: rgb(78, 40, 255);
+  color: var(--primary-color);
 }
 
 .card:hover {
