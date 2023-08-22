@@ -26,6 +26,9 @@ body {
 
 main {
   padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
 }
 
 
