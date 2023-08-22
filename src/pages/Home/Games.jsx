@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Games.module.css";
 import data from "../../data/games.json";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 export default function Games() {
   return (

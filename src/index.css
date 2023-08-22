@@ -6,6 +6,7 @@
   --primary-color: rgb(78, 40, 255);
   --primary-content-color: rgb(240, 237, 255);
   --secondary-color: rgb(255, 57, 90);
+  --secondary-focus: #FF0630;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
