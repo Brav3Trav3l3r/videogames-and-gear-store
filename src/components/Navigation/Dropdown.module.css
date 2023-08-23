@@ -47,8 +47,10 @@
 }
 
 .price {
+  flex: 10%;
   font-weight: 700;
   margin-left: 0.75rem;
+  text-align: end;
 }
 
 .item button {

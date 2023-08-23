@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./Dropdown.module.css";
-import { Icon } from "@iconify/react";
 import CartContext from "../../store/cart-context";
+import CartItem from "./CartItem";
 
 export default function Dropdown() {
   const cartCtx = useContext(CartContext);
@@ -12,22 +12,7 @@ export default function Dropdown() {
 
       <div className={styles.items}>
         {cartCtx.items.length ? (
-          cartCtx.items.map((i) => (
-            <div key={i.id} className={styles.item}>
-              <h3 className={styles.name}>{i.title}</h3>
-              <div className={styles.counter}>
-                <button>
-                  <Icon icon="fe:minus" />
-                </button>
-                <p>{i.quantity}</p>
-                <button>
-                  <Icon icon="fe:plus" />
-                </button>
-              </div>
-
-              <h3 className={styles.price}>₹{i.amount}</h3>
-            </div>
-          ))
+          cartCtx.items.map((i) => <CartItem key={i.id} i={i} />)
         ) : (
           <p>Your cart looks empty. Start adding something</p>
         )}
