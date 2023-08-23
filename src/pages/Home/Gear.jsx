@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Gear.module.css";
 import Card from "./Card";
-import client from "../../client";
+import sanityClient from "../../sanityClient";
 
 export default function Gear() {
   const [gears, setGears] = useState([]);
 
   const fetchGears = useCallback(async () => {
-    const res = await client.fetch(
+    const res = await sanityClient.fetch(
       '*[_type == "gears"]{"id": _id, title, price, "poster": poster.asset->url } '
     );
 

@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Games.module.css";
 import Card from "./Card";
-import client from "../../client";
+import sanityClient from "../../sanityClient";
 
 export default function Games() {
   const [games, setGames] = useState([]);
 
   const fetchGames = useCallback(async () => {
-    const res = await client.fetch(
+    const res = await sanityClient.fetch(
       '*[_type == "games"]{title, "id": _id, price, "poster": poster.asset->url }'
     );
     setGames(res);
