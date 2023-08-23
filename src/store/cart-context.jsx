@@ -14,8 +14,6 @@ export const CartProvider = ({ children }) => {
     totalAmount: 0,
   });
 
-  const { items, totalAmount } = cart;
-
   const addItem = (item) => {
     const updatedAmount = cart.totalAmount + item.price;
 
@@ -23,10 +21,13 @@ export const CartProvider = ({ children }) => {
 
     const foundItemIndex = cart.items.findIndex((i) => i.id == item.id);
 
-    const existingItem = cart.items[foundItemIndex]
+    const existingItem = cart.items[foundItemIndex];
 
     if (existingItem) {
-      let updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+      let updatedItem = {
+        ...existingItem,
+        quantity: existingItem.quantity + 1,
+      };
 
       updatedItems = [...cart.items];
       updatedItems[foundItemIndex] = updatedItem;
@@ -49,12 +50,38 @@ export const CartProvider = ({ children }) => {
     let newCart = {};
   };
 
-  const removeItem = () => {
-    console.log("remove");
+  const removeItem = (id) => {
+    const foundItemIndex = cart.items.findIndex((i) => i.id === id);
+    const existingItem = cart.items[foundItemIndex];
+
+    const updatedAmount = cart.totalAmount - existingItem.price;
+
+    let updatedItems;
+    if (existingItem.quantity == 1) {
+      updatedItems = cart.items.filter((i) => i.id !== id);
+    } else {
+      let updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
+
+      updatedItems = [...cart.items];
+
+      updatedItems[foundItemIndex] = updatedItem;
+    }
+
+    setCart({
+      items: updatedItems,
+      totalAmount: updatedAmount,
+    });
   };
 
   return (
-    <CartContext.Provider value={{ items, totalAmount, addItem, removeItem }}>
+    <CartContext.Provider
+      value={{
+        items: cart.items,
+        totalAmount: cart.totalAmount,
+        addItem,
+        removeItem,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
