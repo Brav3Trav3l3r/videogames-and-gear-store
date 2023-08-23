@@ -1,13 +1,17 @@
-.nav {
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--secondary-color);
+.wrapper {
+  padding: 0.5rem 4rem;
+  position: fixed;
   left: 0;
   right: 0;
   z-index: 10;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: var(--primary-content-color);
+  position: relative;
 }
 
 .interact {
@@ -21,22 +25,28 @@
   text-decoration: none;
   color: var(--primary-content-color);
   font-size: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: var(--primary-content-color);
+  padding: 0.5rem;
+  border-radius: 6rem;
 }
 
 @media (min-width: 640px) {
-  .nav {
+  .wrapper {
     padding: 0.5rem 2rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .nav {
+  .wrapper {
     padding: 0.5rem 4rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .nav {
+  .wrapper {
     padding: 0.5rem 8rem;
   }
 }
