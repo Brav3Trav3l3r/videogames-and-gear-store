@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Icon } from "@iconify/react";
 import styles from "./Cart.module.css";
 import Dropdown from "./Dropdown";
+import CartContext from "../../store/cart-context";
 
 export default function Cart() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const cartCtx = useContext(CartContext);
 
   return (
     <>
@@ -13,7 +16,7 @@ export default function Cart() {
         className={styles.cartButton}
       >
         <Icon icon="lucide:shopping-cart" />
-        <p>2</p>
+        <p>{cartCtx.items.length}</p>
       </div>
 
       {isOpen && <Dropdown />}

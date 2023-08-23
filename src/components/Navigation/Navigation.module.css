@@ -1,9 +1,9 @@
 .wrapper {
-  padding: 0.5rem 4rem;
+  padding: 0.5rem 1rem;
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 30;
 }
 
 .nav {

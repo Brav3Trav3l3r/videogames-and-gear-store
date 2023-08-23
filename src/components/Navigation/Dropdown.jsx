@@ -1,48 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Dropdown.module.css";
 import { Icon } from "@iconify/react";
+import CartContext from "../../store/cart-context";
 
 export default function Dropdown() {
+  const cartCtx = useContext(CartContext);
+
   return (
     <div className={styles.dropdown}>
       <h1 className={styles.heading}>Cart</h1>
 
       <div className={styles.items}>
-        <div className={styles.item}>
-          <h3 className={styles.name}>God of war</h3>
-          <div className={styles.counter}>
-            <button>
-              <Icon icon="fe:minus" />
-            </button>
-            <p>2</p>
-            <button>
-              <Icon icon="fe:plus" />
-            </button>
-          </div>
+        {cartCtx.items.length ? (
+          cartCtx.items.map((i) => (
+            <div key={i.id} className={styles.item}>
+              <h3 className={styles.name}>{i.title}</h3>
+              <div className={styles.counter}>
+                <button>
+                  <Icon icon="fe:minus" />
+                </button>
+                <p>{i.quantity}</p>
+                <button>
+                  <Icon icon="fe:plus" />
+                </button>
+              </div>
 
-          <h3 className={styles.price}>₹300</h3>
-        </div>
-        <div className={styles.item}>
-          <h3 className={styles.name}>God of war</h3>
-          <div className={styles.counter}>
-            <button>
-              <Icon icon="fe:minus" />
-            </button>
-            <p>2</p>
-            <button>
-              <Icon icon="fe:plus" />
-            </button>
-          </div>
-
-          <h3 className={styles.price}>₹300</h3>
-        </div>
+              <h3 className={styles.price}>₹{i.amount}</h3>
+            </div>
+          ))
+        ) : (
+          <p>Your cart looks empty. Start adding something</p>
+        )}
       </div>
 
       <hr />
 
       <div className={styles.total}>
         <h1 className={styles.heading}>Total</h1>
-        <h3 className={styles.price}>₹600</h3>
+        <h3 className={styles.price}>₹{cartCtx.totalAmount}</h3>
       </div>
 
       <button className={styles.checkout}>CHECKOUT</button>
