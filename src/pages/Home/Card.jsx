@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import styles from "./Card.module.css";
 
+import { formatCurrencyString } from "use-shopping-cart";
+
 import CartContext from "../../store/cart-context";
 
 export default function Card({ item }) {
@@ -13,10 +15,15 @@ export default function Card({ item }) {
         <h3 className={styles.title}>{item.title.toUpperCase()}</h3>
 
         <div className={styles.interact}>
-          <h2 className={styles.price}>₹ {item.price}</h2>
+          <h2 className={styles.price}>
+            {formatCurrencyString({
+              value: item.price,
+              currency: "usd",
+            })}
+          </h2>
           <button
             className={styles.button}
-            onClick={() => cartCtx.addItem(item)}
+            onClick={() => cartCtx.addProduct(item)}
           >
             BUY
           </button>
