@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import styles from "./Dropdown.module.css";
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
+import { formatCurrencyString } from "use-shopping-cart";
+
 
 export default function Dropdown() {
   const cartCtx = useContext(CartContext);
@@ -22,7 +24,7 @@ export default function Dropdown() {
 
       <div className={styles.total}>
         <h1 className={styles.heading}>Total</h1>
-        <h3 className={styles.price}>₹{cartCtx.totalAmount}</h3>
+        <h3 className={styles.price}>{formatCurrencyString({value: cartCtx.totalAmount, currency: "USD"})}</h3>
       </div>
 
       <button className={styles.checkout}>CHECKOUT</button>
