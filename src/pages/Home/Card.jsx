@@ -15,7 +15,10 @@ export default function Card({ item }) {
 
         <div className={styles.interact}>
           <h2 className={styles.price}>
-            {formatCurrencyString({ value: item.price, currency: "USD" })}
+            {formatCurrencyString({
+              value: item.price,
+              currency: "usd",
+            })}
           </h2>
           <button
             className={styles.button}

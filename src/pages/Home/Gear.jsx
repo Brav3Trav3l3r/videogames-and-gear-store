@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Gear.module.css";
 import Card from "./Card";
-import sanityClient from "../../sanityClient";
+import sanityClient from "../../../lib/sanity/sanityClient";
 
 export default function Gear() {
   const [gears, setGears] = useState([]);

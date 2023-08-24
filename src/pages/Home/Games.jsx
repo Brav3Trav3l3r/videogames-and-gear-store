@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Games.module.css";
 import Card from "./Card";
-import sanityClient from "../../sanityClient";
+import sanityClient from "../../../lib/sanity/sanityClient";
 
 export default function Games() {
   const [games, setGames] = useState([]);

@@ -1,12 +1,11 @@
 import { createContext, useState } from "react";
-import { useShoppingCart } from 'use-shopping-cart'
 
 const CartContext = createContext({
   items: [],
   totalQuantity: 0,
   totalAmount: 0,
-  addItem: () => {},
-  removeItem: () => {},
+  addProduct: () => {},
+  removeProduct: () => {},
 });
 
 export const CartProvider = ({ children }) => {
@@ -16,7 +15,9 @@ export const CartProvider = ({ children }) => {
     totalAmount: 0,
   });
 
-  const addItem = (item) => {
+  const { addItem, removeItem } = useShoppingCart();
+
+  const addProduct = (item) => {
     const updatedAmount = cart.totalAmount + item.price;
 
     let updatedItems;
@@ -49,9 +50,10 @@ export const CartProvider = ({ children }) => {
       totalAmount: updatedAmount,
     });
 
+    addItem(item)
   };
 
-  const removeItem = (id) => {
+  const removeProduct = (id) => {
     const foundItemIndex = cart.items.findIndex((i) => i.id === id);
     const existingItem = cart.items[foundItemIndex];
 
@@ -61,7 +63,10 @@ export const CartProvider = ({ children }) => {
     if (existingItem.quantity == 1) {
       updatedItems = cart.items.filter((i) => i.id !== id);
     } else {
-      let updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
+      let updatedItem = {
+        ...existingItem,
+        quantity: existingItem.quantity - 1,
+      };
 
       updatedItems = [...cart.items];
 
@@ -72,6 +77,8 @@ export const CartProvider = ({ children }) => {
       items: updatedItems,
       totalAmount: updatedAmount,
     });
+
+    removeItem(id)
   };
 
   return (
@@ -79,8 +86,8 @@ export const CartProvider = ({ children }) => {
       value={{
         items: cart.items,
         totalAmount: cart.totalAmount,
-        addItem,
-        removeItem,
+        addProduct,
+        removeProduct,
       }}
     >
       {children}

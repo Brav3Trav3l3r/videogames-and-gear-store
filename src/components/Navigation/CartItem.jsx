@@ -10,11 +10,11 @@ export default function CartItem({ i }) {
     <div className={styles.item}>
       <h3 className={styles.name}>{i.title}</h3>
       <div className={styles.counter}>
-        <button onClick={() => cartCtx.removeItem(i.id)}>
+        <button onClick={() => cartCtx.removeProduct(i.id)}>
           <Icon icon="fe:minus" />
         </button>
         <p>{i.quantity}</p>
-        <button onClick={() => cartCtx.addItem(i)}>
+        <button onClick={() => cartCtx.addProduct(i)}>
           <Icon icon="fe:plus" />
         </button>
       </div>
