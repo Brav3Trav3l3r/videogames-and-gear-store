@@ -39,23 +39,17 @@ app.post("/checkout", async (req, res) => {
       payment_method_types: ["card"],
       billing_address_collection: "auto",
       line_items,
-      success_url: `https://github.com/yagasta`,
-      cancel_url: `https://github.com/yagasta`,
+      success_url: `http://127.0.0.1:5173/`,
+      cancel_url: `http://127.0.0.1:5173/`,
     };
 
     const session = await stripe.checkout.sessions.create(params);
-
-    console.log(session.id);
-
-    res.status(200).json({ sessionId: session.id });
+    res.status(200).json(session);
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        message: "While communicating with Stripe, we encountered an error.",
-        error: error.message,
-      }),
-    };
+    res.status(500).json({
+      message: "While communicating with Stripe, we encountered an error.",
+      error: error.message,
+    });
   }
 });
 

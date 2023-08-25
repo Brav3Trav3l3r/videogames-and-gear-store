@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import styles from "./Dropdown.module.css";
-import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
-import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
+import { useShoppingCart } from "use-shopping-cart";
+import { redirect, useNavigate } from "react-router-dom";
 
 export default function Dropdown() {
   const { cartDetails, cartCount, formattedTotalPrice, redirectToCheckout } =
     useShoppingCart();
+
+    const navigate = useNavigate()
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -17,13 +19,14 @@ export default function Dropdown() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(cartDetails),
-    });
+    })
+      .then((res) => res.json())
+      .catch((error) => console.log(error));
 
-    const resData = await response.json();
+    console.log(response.url);
+    window.location = response.url
 
-    console.log(resData.sessionId);
-
-    redirectToCheckout({ sessionId: resData.sessionId })
+    // redirectToCheckout({ sessionId: response.id });
   }
 
   return (
