@@ -3,7 +3,7 @@ const { sanityClient } = require("./sanityClient");
 const cors = require("cors");
 
 const stripe = require("stripe")(
-  "sk_test_51NiKdfSHs3QBZavVWoKSCRCZqJfTkzHClVnfvxMcxeqrvDbyDkrFy141iHBiD8ytaBxMNeTIldjISr6dQEULj90Y00sS9T9UtD"
+  "sk_test_51NisCpEfwkwOpSa4ZbwIti8N376rdjzCeVbN3P8jWsnZgq8xXuRSNuzGXpNp49vCb9hyzXC7GmRBncQgI0zgBcSp00HUG3IGLk"
 );
 
 const validateCartItems =
@@ -27,30 +27,25 @@ app.get("/", async (req, res) => {
 app.post("/checkout", async (req, res) => {
   try {
     const cartItems = req.body;
-    let sanityData = await sanityClient.fetch(
-      '*[_type in ["games", "gears"]]{title, "id": _id, price, "poster": poster.asset->url }'
+    const sanityData = await sanityClient.fetch(
+      '*[_type in ["games", "gears"]]{"name":title, "id": _id, price, "poster": poster.asset->url, currency }'
     );
 
     let line_items = validateCartItems(sanityData, cartItems);
-
-    console.log(line_items);
 
     const params = {
       submit_type: "pay",
       mode: "payment",
       payment_method_types: ["card"],
       billing_address_collection: "auto",
-      shipping_address_collection: {
-        allowed_countries: ["US", "CA"],
-      },
       line_items,
-      success_url: `http://127.0.0.1:5173/`,
-      cancel_url: `http://127.0.0.1:5173/`,
+      success_url: `https://github.com/yagasta`,
+      cancel_url: `https://github.com/yagasta`,
     };
 
     const session = await stripe.checkout.sessions.create(params);
 
-    console.log(session);
+    console.log(session.id);
 
     res.status(200).json({ sessionId: session.id });
   } catch (error) {

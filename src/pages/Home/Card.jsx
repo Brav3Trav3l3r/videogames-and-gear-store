@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import styles from "./Card.module.css";
-import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
-
-import CartContext from "../../store/cart-context";
+import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 
 export default function Card({ item }) {
-  const cartCtx = useContext(CartContext);
+  const { addItem } = useShoppingCart();
 
   return (
     <div className={styles.card}>
@@ -20,10 +18,7 @@ export default function Card({ item }) {
               currency: "usd",
             })}
           </h2>
-          <button
-            className={styles.button}
-            onClick={() => addItem(item)}
-          >
+          <button className={styles.button} onClick={() => addItem(item)}>
             BUY
           </button>
         </div>

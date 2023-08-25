@@ -2,18 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import styles from "./Cart.module.css";
 import Dropdown from "./Dropdown";
-import CartContext from "../../store/cart-context";
+import { useShoppingCart } from "use-shopping-cart";
 
 export default function Cart() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHighlighted, setIsHighlited] = useState(false);
 
-  const cartCtx = useContext(CartContext);
-
-  const { items } = cartCtx;
+  const { cartCount } = useShoppingCart();
 
   useEffect(() => {
-    if (items.length == 0) {
+    if (cartCount == 0) {
       return;
     }
     setIsHighlited(true);
@@ -25,7 +23,7 @@ export default function Cart() {
     return () => {
       clearTimeout(timer);
     };
-  }, [items]);
+  }, [cartCount]);
 
   const btnClass = `${styles.cartButton} ${isHighlighted ? styles.bump : ""}`;
 
@@ -33,7 +31,7 @@ export default function Cart() {
     <>
       <div onClick={() => setIsOpen((prev) => !prev)} className={btnClass}>
         <Icon icon="lucide:shopping-cart" />
-        <p>{items.length}</p>
+        <p>{cartCount}</p>
       </div>
 
       {isOpen && <Dropdown />}

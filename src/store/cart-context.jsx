@@ -8,14 +8,11 @@ const CartContext = createContext({
   removeProduct: () => {},
 });
 
-export const CartProvider = ({ children }) => {
-  const { addItem: stripeAdd, removeItem: stripeRemove, redirectToCheckout } = useShoppingCart()
+export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState({
     items: [],
     totalAmount: 0,
   });
-
-  const { addItem, removeItem } = useShoppingCart();
 
   const addProduct = (item) => {
     const updatedAmount = cart.totalAmount + item.price;
@@ -49,8 +46,6 @@ export const CartProvider = ({ children }) => {
       items: updatedItems,
       totalAmount: updatedAmount,
     });
-
-    addItem(item)
   };
 
   const removeProduct = (id) => {
@@ -77,8 +72,6 @@ export const CartProvider = ({ children }) => {
       items: updatedItems,
       totalAmount: updatedAmount,
     });
-
-    removeItem(id)
   };
 
   return (

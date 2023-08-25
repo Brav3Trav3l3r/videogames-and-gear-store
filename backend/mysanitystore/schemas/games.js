@@ -12,7 +12,7 @@ export default {
       name: 'price',
       type: 'number',
       title: 'Price',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'poster',
@@ -23,6 +23,12 @@ export default {
       name: 'description',
       type: 'string',
       title: 'Description',
+    },
+    {
+      name: 'currency',
+      type: 'string',
+      title: 'Currency',
+      initialValue: "USD"
     },
   ],
 }

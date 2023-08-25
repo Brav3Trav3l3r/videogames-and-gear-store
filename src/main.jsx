@@ -8,11 +8,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <CartProvider
     mode="payment"
     cartMode="client-only"
-    stripe={import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY}
+    stripe="pk_test_51NisCpEfwkwOpSa4ftyRroZmIotifhyVXCnRHjiLWgZwEl35g6dCnXqKxAtJJIJzNnhido0Zl2PLCnJHn2FI6pZ600FtbqNDDx"
     successUrl="stripe.com"
     cancelUrl="twitter.com/dayhaysoos"
     currency="USD"
-    allowedCountries={["US", "GB", "CA"]}
     billingAddressCollection={true}
   >
     <React.StrictMode>

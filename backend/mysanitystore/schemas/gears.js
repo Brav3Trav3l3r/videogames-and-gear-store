@@ -24,6 +24,12 @@ export default {
         type: 'string',
         title: 'Description',
       },
+      {
+        name: 'currency',
+        type: 'string',
+        title: 'Currency',
+        initialValue: "USD"
+      }
     ],
   }
   
