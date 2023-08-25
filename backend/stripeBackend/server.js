@@ -44,7 +44,7 @@ app.post("/checkout", async (req, res) => {
     };
 
     const session = await stripe.checkout.sessions.create(params);
-    res.status(200).json(session);
+    res.status(200).json({ responseId: session.id });
   } catch (error) {
     res.status(500).json({
       message: "While communicating with Stripe, we encountered an error.",

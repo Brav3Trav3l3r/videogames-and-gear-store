@@ -6,12 +6,12 @@ import { CartProvider } from "use-shopping-cart";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <CartProvider
-    mode="payment"
-    cartMode="client-only"
-    stripe="pk_test_51NisCpEfwkwOpSa4ftyRroZmIotifhyVXCnRHjiLWgZwEl35g6dCnXqKxAtJJIJzNnhido0Zl2PLCnJHn2FI6pZ600FtbqNDDx"
-    successUrl="stripe.com"
-    cancelUrl="twitter.com/dayhaysoos"
+    cartMode="checkout-session"
+    stripe={import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY}
+    successUrl="http://127.0.0.1:5173/"
+    cancelUrl="http://127.0.0.1:5173/"
     currency="USD"
+    allowedCountries={["US", "GB", "CA"]}
     billingAddressCollection={true}
   >
     <React.StrictMode>
