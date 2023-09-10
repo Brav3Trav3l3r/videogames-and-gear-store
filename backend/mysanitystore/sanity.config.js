@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
@@ -7,7 +8,7 @@ export default defineConfig({
   name: 'default',
   title: 'gameGearStore',
 
-  projectId: '2h15fc14',
+  projectId: process.env.SANITY_PROJECT_ID,
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],
