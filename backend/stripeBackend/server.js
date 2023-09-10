@@ -1,10 +1,10 @@
+require("dotenv").config();
+
 const express = require("express");
 const { sanityClient } = require("./sanityClient");
 const cors = require("cors");
 
-const stripe = require("stripe")(
-  "sk_test_51NisCpEfwkwOpSa4ZbwIti8N376rdjzCeVbN3P8jWsnZgq8xXuRSNuzGXpNp49vCb9hyzXC7GmRBncQgI0zgBcSp00HUG3IGLk"
-);
+const stripe = require("stripe")(process.env.STRIP_SECRET_KEY);
 
 const validateCartItems =
   require("use-shopping-cart/utilities").validateCartItems;
